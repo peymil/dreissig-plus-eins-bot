@@ -32,7 +32,6 @@ console.log(__dirname);
         },
         registerCommandOptions: [
           {
-            forGuild: configService.get("GUILD_ID_WITH_COMMANDS"),
             removeCommandsBefore: true,
           },
         ],
