@@ -1,0 +1,32 @@
+version: "3.9"
+
+services:
+  dreissig-plus-eins-bot:
+    build: .
+    networks:
+      - dreissig-plus-eins-bot-network
+    depends_on:
+      - db
+      - supertokens-core
+    env_file:
+      - ./.env
+    environment:
+      - ORM_HOST=db
+      - ORM_PORT=5432
+  db:
+    image: postgres
+    networks:
+      - dreissig-plus-eins-bot-network
+    ports:
+      - "${ORM_PORT}:5432"
+    env_file:
+      - .env
+    volumes:
+      - dreissig-plus-eins-bot-db:/var/lib/postgresql/data
+
+networks:
+  dreissig-plus-eins-bot-network:
+
+volumes:
+  dreissig-plus-eins-bot-db:
+    name: dreissig-plus-eins-bot-db
