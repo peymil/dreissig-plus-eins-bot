@@ -28,7 +28,11 @@ console.log(__dirname);
       useFactory: (configService: ConfigService) => ({
         token: configService.get("DISCORD_TOKEN"),
         discordClientOptions: {
-          intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_PRESENCES],
+          intents: [
+            Intents.FLAGS.GUILDS,
+            Intents.FLAGS.GUILD_MESSAGES,
+            Intents.FLAGS.GUILD_PRESENCES,
+          ],
         },
         registerCommandOptions: [
           {
@@ -39,5 +43,6 @@ console.log(__dirname);
     }),
     BotModule,
   ],
+  providers: [],
 })
 export class AppModule {}
