@@ -21,8 +21,8 @@ export class ForbidGamesConfigService {
     return games;
   }
 
-  getDefaultResponse() {
-    return "@g@ OYUNCUSU TESPİT EDİLDİ!!! @g@ OYUNCUSU TESPİT EDİLDİ!!! @u@";
+  getDefaultResponse(gameName: string) {
+    return `${gameName} OYUNCUSU TESPİT EDİLDİ!!! ${gameName} OYUNCUSU TESPİT EDİLDİ!!! @u@`;
   }
 
   async getForbiddenGameNames(guildId: string): Promise<string[]> {
@@ -51,6 +51,6 @@ export class ForbidGamesConfigService {
   }
 
   async removeForbiddenGame(guildId: string, gameName: string): Promise<void> {
-    const game = await this.gameRepo.delete({ name: gameName, guildId });
+    await this.gameRepo.delete({ name: gameName, guildId });
   }
 }

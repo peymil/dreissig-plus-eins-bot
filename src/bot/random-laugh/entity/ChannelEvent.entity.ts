@@ -7,7 +7,7 @@ import {
 } from "typeorm";
 
 @Entity()
-export default class ChannelEvent extends BaseEntity {
+export class ChannelEventEntity extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 

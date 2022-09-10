@@ -14,20 +14,20 @@ export class ForbidGamesGateway {
     oldPresence: Presence,
     newPresence: Presence
   ): Promise<void> {
-    console.log("oldPresence", oldPresence);
-    console.log("newPresence", newPresence);
     const forbiddenActivities =
       await this.forbidGamesService.getForbiddenActivities(
         newPresence.activities,
         newPresence.guild.id
       );
-
+    if (!forbiddenActivities) return;
     const newActivities =
       await this.forbidGamesService.processUserActivitiesAndGetNewActivities(
         forbiddenActivities,
         newPresence.user,
         newPresence.guild.id
       );
+    console.log("newActivities", newActivities);
+    if (!newActivities) return;
 
     this.forbidGamesService.answerToUser(
       newActivities,

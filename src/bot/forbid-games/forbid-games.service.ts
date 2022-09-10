@@ -28,7 +28,7 @@ export class ForbidGamesService {
         foundForbiddenActivities.push(activity);
       }
     }
-    if (activities.length > 0) {
+    if (foundForbiddenActivities.length > 0) {
       return activities;
     }
     return undefined;
@@ -77,18 +77,18 @@ export class ForbidGamesService {
   }
 
   parseResponseTemplate(response: string, user: string, game: string) {
-    return response.replace("@u@", user).replace("@g@", game);
+    return response.replace("@u@", `<@${user}>`);
   }
 
   async answerToUser(
     activities: ActivityEntity[],
-    username: string,
+    userId: string,
     channel: TextChannel
   ) {
     for (const activity of activities) {
       const text = this.parseResponseTemplate(
-        this.forbidGamesConfigService.getDefaultResponse(),
-        username,
+        this.forbidGamesConfigService.getDefaultResponse(activity.game.name),
+        userId,
         activity.game.name
       );
       await channel.send(text);

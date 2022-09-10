@@ -1,9 +1,9 @@
 import { Module } from "@nestjs/common";
 import { ForbidGamesModule } from "./forbid-games/forbid-games.module";
-import { RandomLaughGateway } from "./random-laugh/random-laugh.gateway";
+import { RandomLaughModule } from "./random-laugh/random-laugh.module";
 
 @Module({
-  imports: [ForbidGamesModule],
-  providers: [RandomLaughGateway],
+  imports: [ForbidGamesModule, RandomLaughModule],
+  providers: [],
 })
 export class BotModule {}

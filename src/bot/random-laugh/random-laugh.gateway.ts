@@ -6,7 +6,7 @@ import { Message } from "discord.js";
 import { RandomLaughService } from "./random-laugh/random-laugh.service";
 import { doesIncludesAsSubstring } from "../../utils";
 import { InjectRepository } from "@nestjs/typeorm";
-import ChannelEvent from "./entity/ChannelEvent.entity";
+import { ChannelEventEntity } from "./entity/ChannelEvent.entity";
 import { Repository } from "typeorm";
 import { Parser } from "expr-eval";
 import {
@@ -20,8 +20,8 @@ import {
 export class RandomLaughGateway {
   constructor(
     private randomLaughService: RandomLaughService,
-    @InjectRepository(ChannelEvent)
-    private channelEventRepo: Repository<ChannelEvent>
+    @InjectRepository(ChannelEventEntity)
+    private channelEventRepo: Repository<ChannelEventEntity>
   ) {}
 
   @On("messageCreate")
