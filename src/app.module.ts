@@ -19,7 +19,7 @@ console.log(__dirname);
         username: configService.get("POSTGRES_USER"),
         password: configService.get("POSTGRES_PASSWORD"),
         database: configService.get("POSTGRES_DB"),
-        entities: [__dirname + "/**/*.entity.js"],
+        entities: [__dirname + "/**/*.entity.*"],
         synchronize: true,
       }),
     }),
